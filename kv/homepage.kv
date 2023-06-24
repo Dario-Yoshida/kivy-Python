@@ -1,0 +1,52 @@
+<HomePage>:
+    FloatLayout:
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "icones/bg1.png"
+        Label:
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "icones/botao_fino.png"
+            pos_hint: {"right": 0.85, "top": 0.95}
+            size_hint: 0.7, 0.2
+            text: "Total de Vendas: R$1"
+            id: label_total_vendas
+            markup: True
+
+        # LISTA DE VENDAS
+        ScrollView:
+            pos_hint: {"right": 1, "top": 0.75}
+            size_hint: 1, 0.63
+            GridLayout:
+                id: lista_vendas
+                cols: 1
+                size_hint_y: None
+                spacing: 2, 2
+                height: self.minimum_height
+                row_default_height: "90dp"
+                row_force_default: True
+
+        # 3 BOTOES
+        GridLayout:
+            rows: 1
+            pos_hint: {"right": 1, "top": 0.12}
+            size_hint: 1, 0.12
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#006D7E")
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            ImageButton:
+                source: "icones/add.png"
+                on_release: app.mudar_tela("adicionarvendaspage")
+            ImageButton:
+                source: "icones/salesman.png"
+                on_release: app.mudar_tela("listarvendedorespage")
+            ImageButton:
+                source: "icones/settings.png"
+                on_release: app.mudar_tela("ajustepage")

@@ -1,0 +1,52 @@
+<AdicionarVendedorPage>:
+    FloatLayout:
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "icones/bg1.png"
+        Label:
+            pos_hint: {"right": 0.9, "top": 0.8}
+            size_hint: 0.8, 0.1
+            bold: True
+            text: "Insira o [color=#00CFDB]ID de outro Vendedor[/color] para acompanha-lo"
+            markup: True
+
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            pos_hint: {"right": 0.9, "top": 0.55}
+            size_hint: 0.8, 0.2
+            on_release: app.adicionar_vendedor(input_id_outrovendedor.text)
+            text: "Adicionar Vendedor"
+        TextInput:
+            pos_hint: {"right": 0.9, "top": 0.7}
+            size_hint: 0.8, 0.1
+            id: input_id_outrovendedor
+
+        Label:
+            text: ""
+            bold: True
+            markup: True
+            pos_hint: {"right": 0.9, "top": 0.4}
+            size_hint: 0.8, 0.1
+            id: mensagem_outrovendedor
+
+        # VOLTAR
+        FloatLayout:
+            pos_hint: {"right": 1, "top": 0.13}
+            size_hint: 1, 0.13
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#006D7E")
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            ImageButton:
+                pos_hint: {"right": 0.2, "top": 0.9}
+                size_hint: 0.2, 0.8
+                source: "icones/voltar.png"
+                on_release: app.mudar_tela("ajustepage")
